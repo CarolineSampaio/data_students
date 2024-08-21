@@ -27,4 +27,10 @@ class StudentRepository implements StudentRepositoryInterface
         $student->update($data);
         return $student;
     }
+
+    public function delete(Student $student)
+    {
+        $student->delete();
+        return true;
+    }
 }
