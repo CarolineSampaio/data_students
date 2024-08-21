@@ -3,7 +3,6 @@
 namespace App\Http\Services\Student;
 
 use App\Http\Repositories\StudentRepository;
-use Illuminate\Http\Response;
 
 class UpdateOneStudentService
 {
