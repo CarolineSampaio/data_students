@@ -38,6 +38,9 @@ class StudentController extends Controller
     public function show(ListOneStudentService $listOneStudentService, $id)
     {
         $student = $listOneStudentService->handle($id);
+        if (isset($student['message'])) {
+            return response()->json($student, Response::HTTP_NOT_FOUND);
+        }
         return response()->json($student, Response::HTTP_OK);
     }
 
@@ -51,6 +54,7 @@ class StudentController extends Controller
 
         return response()->json($student, Response::HTTP_OK);
     }
+
     public function destroy(DeleteOneStudentService $deleteOneStudentService, $id)
     {
         $student = $deleteOneStudentService->handle($id);

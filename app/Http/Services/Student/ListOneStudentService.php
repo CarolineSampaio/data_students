@@ -15,6 +15,10 @@ class ListOneStudentService
 
     public function handle($id)
     {
-        return $this->studentRepository->getById($id);
+        $student = $this->studentRepository->getById($id);
+        if (!$student) {
+            return ['message' => 'Aluno não encontrado'];
+        }
+        return $student;
     }
 }
