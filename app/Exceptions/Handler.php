@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,5 +45,16 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e): \Symfony\Component\HttpFoundation\Response
+    {
+        if ($e instanceof \Illuminate\Validation\ValidationException) {
+
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], Response::HTTP_BAD_REQUEST);
+        }
+        return parent::render($request, $e);
     }
 }
