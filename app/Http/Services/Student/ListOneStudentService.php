@@ -4,7 +4,7 @@ namespace App\Http\Services\Student;
 
 use App\Http\Repositories\StudentRepository;
 
-class ListOneStudentsService
+class ListOneStudentService
 {
     protected $studentRepository;
 

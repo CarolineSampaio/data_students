@@ -6,7 +6,7 @@ use App\Http\Requests\StoreStudentRequest;
 
 use App\Http\Services\Student\CreateStudentService;
 use App\Http\Services\Student\ListAllStudentsService;
-use App\Http\Services\Student\ListOneStudentsService;
+use App\Http\Services\Student\ListOneStudentService;
 
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,9 +32,9 @@ class StudentController extends Controller
         return response()->json($alunos, Response::HTTP_OK);
     }
 
-    public function show(ListOneStudentsService $listOneStudentsService, $id)
+    public function show(ListOneStudentService $listOneStudentService, $id)
     {
-        $student = $listOneStudentsService->handle($id);
+        $student = $listOneStudentService->handle($id);
         return response()->json($student, Response::HTTP_OK);
     }
 }
