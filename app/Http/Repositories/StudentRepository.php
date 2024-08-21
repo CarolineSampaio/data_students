@@ -16,4 +16,9 @@ class StudentRepository implements StudentRepositoryInterface
     {
         return Student::all();
     }
+
+    public function getById($id)
+    {
+        return Student::find($id);
+    }
 }

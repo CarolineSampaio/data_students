@@ -6,6 +6,7 @@ use App\Http\Requests\StoreStudentRequest;
 
 use App\Http\Services\Student\CreateStudentService;
 use App\Http\Services\Student\ListAllStudentsService;
+use App\Http\Services\Student\ListOneStudentsService;
 
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,16 +19,22 @@ class StudentController extends Controller
         $this->listAllStudentsService = $listAllStudentsService;
     }
 
+    public function store(StoreStudentRequest $request, CreateStudentService $createStudentService)
+    {
+        $data = $request->all();
+        $student = $createStudentService->handle($data);
+        return response()->json($student, Response::HTTP_CREATED);
+    }
+
     public function index()
     {
         $alunos = $this->listAllStudentsService->handle();
         return response()->json($alunos, Response::HTTP_OK);
     }
 
-    public function store(StoreStudentRequest $request, CreateStudentService $createStudentService)
+    public function show(ListOneStudentsService $listOneStudentsService, $id)
     {
-        $data = $request->all();
-        $student = $createStudentService->handle($data);
-        return response()->json($student, Response::HTTP_CREATED);
+        $student = $listOneStudentsService->handle($id);
+        return response()->json($student, Response::HTTP_OK);
     }
 }
