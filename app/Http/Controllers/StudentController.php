@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudentRequest;
+
+use App\Http\Services\Student\CreateStudentService;
 use App\Http\Services\Student\ListAllStudentsService;
+
 use Symfony\Component\HttpFoundation\Response;
 
 class StudentController extends Controller
@@ -18,5 +22,12 @@ class StudentController extends Controller
     {
         $alunos = $this->listAllStudentsService->handle();
         return response()->json($alunos, Response::HTTP_OK);
+    }
+
+    public function store(StoreStudentRequest $request, CreateStudentService $createStudentService)
+    {
+        $data = $request->all();
+        $student = $createStudentService->handle($data);
+        return response()->json($student, Response::HTTP_CREATED);
     }
 }
