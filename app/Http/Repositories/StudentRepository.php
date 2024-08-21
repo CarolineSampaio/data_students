@@ -21,4 +21,10 @@ class StudentRepository implements StudentRepositoryInterface
     {
         return Student::find($id);
     }
+
+    public function update(Student $student, $data)
+    {
+        $student->update($data);
+        return $student;
+    }
 }
