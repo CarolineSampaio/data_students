@@ -178,6 +178,201 @@
                     }
                 }
             }
+        },
+        "/api/alunos/{id}": {
+            "get": {
+                "tags": [
+                    "Alunos"
+                ],
+                "summary": "Recupera um aluno específico com base no id",
+                "operationId": "getStudentById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do aluno",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes do aluno recuperados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "João Silva"
+                                        },
+                                        "idade": {
+                                            "type": "integer",
+                                            "example": 20
+                                        },
+                                        "nota_primeiro_semestre": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 8.5
+                                        },
+                                        "nota_segundo_semestre": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 7.9
+                                        },
+                                        "nome_professor": {
+                                            "type": "string",
+                                            "example": "Professor A"
+                                        },
+                                        "numero_sala": {
+                                            "type": "integer",
+                                            "example": 101
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-08-21T18:20:07.000000Z"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-08-21T18:20:07.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Aluno não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Alunos"
+                ],
+                "summary": "Atualiza um aluno existente. Todos os campos são opcionais.",
+                "operationId": "updateStudent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do aluno a ser atualizado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "João Silva"
+                                    },
+                                    "idade": {
+                                        "type": "integer",
+                                        "example": 21
+                                    },
+                                    "nota_primeiro_semestre": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 8.7
+                                    },
+                                    "nota_segundo_semestre": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 8.1
+                                    },
+                                    "nome_professor": {
+                                        "type": "string",
+                                        "example": "Professor B"
+                                    },
+                                    "numero_sala": {
+                                        "type": "integer",
+                                        "example": 102
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Atualização realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "João Silva"
+                                        },
+                                        "idade": {
+                                            "type": "integer",
+                                            "example": 21
+                                        },
+                                        "nota_primeiro_semestre": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 8.7
+                                        },
+                                        "nota_segundo_semestre": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 8.1
+                                        },
+                                        "nome_professor": {
+                                            "type": "string",
+                                            "example": "Professor B"
+                                        },
+                                        "numero_sala": {
+                                            "type": "integer",
+                                            "example": 102
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2024-08-21T19:20:07.000000Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    },
+                    "404": {
+                        "description": "Aluno não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor"
+                    }
+                }
+            }
         }
     },
     "tags": [
