@@ -262,7 +262,7 @@
                 "tags": [
                     "Alunos"
                 ],
-                "summary": "Atualiza um aluno existente. Todos os campos são opcionais.",
+                "summary": "Atualiza um aluno existente, campos opcionais",
                 "operationId": "updateStudent",
                 "parameters": [
                     {
@@ -364,6 +364,36 @@
                     },
                     "400": {
                         "description": "Dados inválidos"
+                    },
+                    "404": {
+                        "description": "Aluno não encontrado"
+                    },
+                    "500": {
+                        "description": "Erro interno no servidor"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Alunos"
+                ],
+                "summary": "Deleta um aluno existente",
+                "operationId": "deleteStudent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do aluno a ser removido",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Sucesso, sem conteúdo"
                     },
                     "404": {
                         "description": "Aluno não encontrado"

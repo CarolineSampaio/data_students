@@ -148,7 +148,7 @@ class StudentController extends Controller
      *     path="/api/alunos/{id}",
      *     operationId="updateStudent",
      *     tags={"Alunos"},
-     *     summary="Atualiza um aluno existente. Todos os campos são opcionais.",
+     *     summary="Atualiza um aluno existente, campos opcionais",
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -199,6 +199,27 @@ class StudentController extends Controller
         return response()->json($student, Response::HTTP_OK);
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/alunos/{id}",
+     *     operationId="deleteStudent",
+     *     tags={"Alunos"},
+     *     summary="Deleta um aluno existente",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         description="ID do aluno a ser removido",
+     *         @OA\Schema(type="integer", example=1)
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Sucesso, sem conteúdo",
+     *     ),
+     *     @OA\Response(response=404, description="Aluno não encontrado"),
+     *     @OA\Response(response=500, description="Erro interno no servidor")
+     * )
+     */
     public function destroy(DeleteOneStudentService $deleteOneStudentService, $id)
     {
         $student = $deleteOneStudentService->handle($id);
