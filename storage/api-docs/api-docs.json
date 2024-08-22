@@ -1,0 +1,51 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentação API Alunos",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/alunos": {
+            "get": {
+                "tags": [
+                    "Alunos"
+                ],
+                "summary": "Lista todos os alunos",
+                "operationId": "listStudents",
+                "responses": {
+                    "200": {
+                        "description": "List of students retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "John Doe"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Alunos"
+        }
+    ]
+}

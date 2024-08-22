@@ -29,6 +29,27 @@ class StudentController extends Controller
         return response()->json($student, Response::HTTP_CREATED);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/alunos",
+     *     operationId="listStudents",
+     *     tags={"Alunos"},
+     *     summary="Lista todos os alunos",
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of students retrieved successfully",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer", example=1),
+     *                 @OA\Property(property="name", type="string", example="John Doe")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(response=500, description="Internal Server Error")
+     * )
+     */
     public function index()
     {
         $alunos = $this->listAllStudentsService->handle();
