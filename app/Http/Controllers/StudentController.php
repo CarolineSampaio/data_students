@@ -22,12 +22,51 @@ class StudentController extends Controller
         $this->listAllStudentsService = $listAllStudentsService;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/alunos",
+     *     operationId="createStudent",
+     *     tags={"Alunos"},
+     *     summary="Cadastra um novo aluno",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="nome", type="string", example="João Silva"),
+     *             @OA\Property(property="idade", type="integer", example=20),
+     *             @OA\Property(property="nota_primeiro_semestre", type="number", format="float", example=8.5),
+     *             @OA\Property(property="nota_segundo_semestre", type="number", format="float", example=7.9),
+     *             @OA\Property(property="nome_professor", type="string", example="Professor A"),
+     *             @OA\Property(property="numero_sala", type="integer", example=101)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Cadastro realizado com sucesso",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id", type="integer", example=1),
+     *             @OA\Property(property="nome", type="string", example="João Silva"),
+     *             @OA\Property(property="idade", type="integer", example=20),
+     *             @OA\Property(property="nota_primeiro_semestre", type="number", format="float", example=8.5),
+     *             @OA\Property(property="nota_segundo_semestre", type="number", format="float", example=7.9),
+     *             @OA\Property(property="nome_professor", type="string", example="Professor A"),
+     *             @OA\Property(property="numero_sala", type="integer", example=101),
+     *             @OA\Property(property="created_at", type="string", format="date-time", example="2024-08-21T18:20:07.000000Z"),
+     *             @OA\Property(property="updated_at", type="string", format="date-time", example="2024-08-21T18:20:07.000000Z")
+     *         )
+     *     ),
+     *     @OA\Response(response=400, description="Dados inválidos"),
+     *     @OA\Response(response=500, description="Erro interno no servidor")
+     * )
+     */
     public function store(StoreStudentRequest $request, CreateStudentService $createStudentService)
     {
         $data = $request->all();
         $student = $createStudentService->handle($data);
         return response()->json($student, Response::HTTP_CREATED);
     }
+
 
     /**
      * @OA\Get(
@@ -37,17 +76,24 @@ class StudentController extends Controller
      *     summary="Lista todos os alunos",
      *     @OA\Response(
      *         response=200,
-     *         description="List of students retrieved successfully",
+     *         description="Listagem realizada com sucesso",
      *         @OA\JsonContent(
      *             type="array",
      *             @OA\Items(
      *                 type="object",
      *                 @OA\Property(property="id", type="integer", example=1),
-     *                 @OA\Property(property="name", type="string", example="John Doe")
+     *                 @OA\Property(property="nome", type="string", example="João Silva"),
+     *                 @OA\Property(property="idade", type="integer", example=20),
+     *                 @OA\Property(property="nota_primeiro_semestre", type="number", format="float", example=8.5),
+     *                 @OA\Property(property="nota_segundo_semestre", type="number", format="float", example=7.9),
+     *                 @OA\Property(property="nome_professor", type="string", example="Professor A"),
+     *                 @OA\Property(property="numero_sala", type="integer", example=101),
+     *                 @OA\Property(property="created_at", type="string", format="date-time", example="2024-08-21T18:20:07.000000Z"),
+     *                 @OA\Property(property="updated_at", type="string", format="date-time", example="2024-08-21T18:20:07.000000Z")
      *             )
      *         )
      *     ),
-     *     @OA\Response(response=500, description="Internal Server Error")
+     *     @OA\Response(response=500, description="Erro interno no servidor")
      * )
      */
     public function index()
