@@ -105,7 +105,7 @@ class StudentController extends Controller
      * @OA\Get(
      *     path="/api/alunos/{id}",
      *     operationId="getStudentById",
-     *     summary="Recupera um aluno específico com base no id",
+     *     summary="Lista um aluno com base no id",
      *     tags={"Alunos"},
      *     @OA\Parameter(
      *         name="id",
