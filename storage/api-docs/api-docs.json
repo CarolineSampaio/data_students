@@ -184,7 +184,7 @@
                 "tags": [
                     "Alunos"
                 ],
-                "summary": "Recupera um aluno específico com base no id",
+                "summary": "Lista um aluno com base no id",
                 "operationId": "getStudentById",
                 "parameters": [
                     {
